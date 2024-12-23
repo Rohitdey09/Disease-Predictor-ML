@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Disease Prediction</h1>
+        <form action="/predict" method="post">
+            <label for="symptoms">Enter Symptoms (comma separated):</label>
+            <input type="text" id="symptoms" name="symptoms" required>
+            <button type="submit">Predict</button>
+        </form>
+        {% if prediction %}
+            <h2>Predictions:</h2>
+            <p>Random Forest: {{ prediction['rf_model_prediction'] }}</p>
+            <p>Naive Bayes: {{ prediction['naive_bayes_prediction'] }}</p>
+            <p>SVM: {{ prediction['svm_model_prediction'] }}</p>
+            <p><strong>Final Prediction: {{ prediction['final_prediction'] }}</strong></p>
+        {% endif %}
+    </div>
+</body>
+</html>
